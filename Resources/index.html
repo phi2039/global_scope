@@ -1,11 +1,32 @@
 <html>
 	<head>
+		<title>GlobalScope</title>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script src="js/common.js"></script>
+		<script src="js/geo.js"></script>
+		
+		<script language="JavaScript">
+			function doSearch() {
+				
+			}
+		</script>
+		
+		<link rel="stylesheet" type="text/css" href="css/theme.css"/>
 	</head>
 	<body style="background-color:#1c1c1c;margin:0">
-		<div style="border-top:1px solid #404040">
-			<div style="color:#fff;;padding:10px">
-				Welcome to Titanium
-			</div>
-		</div>
+	<div id="search">
+		<h2>Search for Coordinates</h2>
+		<form id=inputForm action="" method="post>">		
+			<fieldset>
+				<p>
+					<label for="sourceAddress">Address</label>
+					<input id="sourceAddress" name="sourceAddress" type="text" class="text" value="" />
+				</p>
+				<p>
+					<button id="searchButton" type="button" onclick="doSearch();">Search</button>
+				</p>
+			</fieldset>
+		</form>	
+	</div>
 	</body>
 </html>
