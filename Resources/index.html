@@ -1,23 +1,41 @@
 <html>
 	<head>
 		<title>GlobalScope</title>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script src="js/common.js"></script>
-		<script src="js/geo.js"></script>
+		<script src="js/jquery.min.js"></script>
+ 		<script src="js/geo.js"></script>
 		
-		<script language="JavaScript">
+		<script language="JavaScript">			
 			function doSearch() {
+				var geo = new MyBrownDog.Geo();
+				var address = $("#sourceAddress").val();
+				geo.getCoordinates(address,onSearchComplete);
 				
+				// TODO: Show 'waiting' dialog
+			}
+			
+			function onSearchComplete(response) {
+				// TODO: Hide 'waiting' dialog
+				
+//				alert(response);
+				
+				$("#resultDetails").innerHTML  = "<p>Success!</p>";
+				for (var i = 0; i < response.length; i++) {
+					var result = response[i];
+					var summary = "Location: " + result.display_name + "<br />";
+					summary += "lat: " + result.lat + "<br />";
+					summary += "lon: " + result.lon + "<br />";
+					$("#resultDetails").append(summary);
+				}
 			}
 		</script>
 		
 		<link rel="stylesheet" type="text/css" href="css/theme.css"/>
 	</head>
 	<body style="background-color:#1c1c1c;margin:0">
-	<div id="search">
+	<div id="search" class="panel">
 		<h2>Search for Coordinates</h2>
 		<form id="inputForm" action="" method="post>">		
-			<fieldset>
+			<div class="contents">
 				<p>
 					<label for="sourceAddress">Address</label>
 					<input id="sourceAddress" name="sourceAddress" type="text" class="text" value="" />
@@ -25,8 +43,14 @@
 				<p>
 					<button id="searchButton" type="button" onclick="doSearch();">Search</button>
 				</p>
-			</fieldset>
+			</div>
 		</form>	
+	</div>
+	<div id="results" class="panel">
+		<h2>Results</h2>
+		<div id="resultDetails" class="contents">
+			
+		</div>
 	</div>
 	</body>
 </html>
