@@ -22,17 +22,18 @@ namespace('MyBrownDog', function() {
 
 		this.API_BASE_URL = 'http://open.mapquestapi.com';
 		this.API_SEARCH_URL = this.API_BASE_URL + '/nominatim/v1/search?format=json';    
+		
         this.getCoordinates = function(address,callback){
 			var query = this.API_SEARCH_URL;
 			query += "&q=" + address;
 			query += "&json_callback=" + callback.name;
-		    this.script.src = query;
-        }
-        
-        this.init = function() {
-		    this.script = document.createElement("script");
+			try{
+				document.body.removeChild (this.script);
+			} catch(err) {}
+			this.script = document.createElement("script");
 		    this.script.type = "text/javascript";        	
 		    document.body.appendChild(this.script);
+		    this.script.src = query;
         }
     }
     return { Geo: Geo };
