@@ -1,7 +1,3 @@
-/**
- * @author Christopher Lance
- */
-
 function namespace(name, publics){
     var path = name.split('\.');
     var cpath = '';
@@ -21,21 +17,23 @@ function namespace(name, publics){
 }
 
 namespace('MyBrownDog', function() {
-		function Geo() {
+	// Geo class
+	function Geo() { 
+
 		this.API_BASE_URL = 'http://open.mapquestapi.com';
 		this.API_SEARCH_URL = this.API_BASE_URL + '/nominatim/v1/search?format=json';    
         this.getCoordinates = function(address,callback){
 			var query = this.API_SEARCH_URL;
 			query += "&q=" + address;
 			query += "&json_callback=" + callback.name;
-		    var script = document.createElement("script");
-		    script.type = "text/javascript";
-		    script.src = query;
-		    
-		    document.body.appendChild(script);
+		    this.script.src = query;
+        }
+        
+        this.init = function() {
+		    this.script = document.createElement("script");
+		    this.script.type = "text/javascript";        	
+		    document.body.appendChild(this.script);
         }
     }
- 
-    // turn public MyClass
     return { Geo: Geo };
 });

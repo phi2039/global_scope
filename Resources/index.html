@@ -5,8 +5,9 @@
  		<script src="js/geo.js"></script>
 		
 		<script language="JavaScript">			
+			var geo = new MyBrownDog.Geo();
 			function doSearch() {
-				var geo = new MyBrownDog.Geo();
+				$("#resultDetails").html("<p>No Results</p>");
 				var address = $("#sourceAddress").val();
 				geo.getCoordinates(address,onSearchComplete);
 				
@@ -16,9 +17,7 @@
 			function onSearchComplete(response) {
 				// TODO: Hide 'waiting' dialog
 				
-//				alert(response);
-				
-				$("#resultDetails").innerHTML  = "<p>Success!</p>";
+				$("#resultDetails").html("<p>Success!</p>");
 				for (var i = 0; i < response.length; i++) {
 					var result = response[i];
 					var summary = "Location: " + result.display_name + "<br />";
@@ -27,6 +26,10 @@
 					$("#resultDetails").append(summary);
 				}
 			}
+			
+			$(document).ready(function(){
+				geo.init();
+			});
 		</script>
 		
 		<link rel="stylesheet" type="text/css" href="css/theme.css"/>

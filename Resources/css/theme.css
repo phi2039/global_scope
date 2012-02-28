@@ -48,6 +48,10 @@ body { font-family: Helvetica, Arial, sans-serif; font-size: 12px; }
 	box-shadow: 0px 1px 0px #3a3a3a;
 }
 
+.panel label {
+font-size: 14px; 	
+}
+
 .contents {
       padding: 20px;
       }
